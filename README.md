@@ -1,2 +1,3 @@
 # razorpages-simple-app
-A simple-app in razor pages (asp.net core 3)
+A [simple-app](https://github.com/Magicianred/simple-app) in razor pages (Asp .Net Core 3)
+

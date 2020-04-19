@@ -1,0 +1,34 @@
+using Microsoft.Extensions.Logging;
+using Westwind.AspNetCore.Markdown;
+
+using razorpages_simple_app.Helpers;
+
+namespace razorpages_simple_app.Pages
+{
+    public class AboutModel : BasePageModel
+    {
+        private readonly ILogger<AboutModel> _logger;
+        private Microsoft.AspNetCore.Hosting.IWebHostEnvironment _env;
+        public string MdHtml;
+        public string MdText;
+
+        public AboutModel(
+            Microsoft.AspNetCore.Hosting.IWebHostEnvironment env, 
+            ILogger<AboutModel> logger
+            ) {
+            _env = env;
+            _logger = logger;
+        }
+
+        public void OnGet()
+        {
+            string webRootPath = _env.WebRootPath;
+
+            string markdown = System.IO.File.ReadAllText(webRootPath + "/data/pages/home.md");
+            MdHtml = Markdown.Parse(markdown, sanitizeHtml: true);
+            
+            /** For demonstration purpose **/
+            MdText = markdown;
+        }
+    }
+}
